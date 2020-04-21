@@ -1,0 +1,22 @@
+extends layout
+
+block content
+    h1 Author: #{author.name}
+    if author.date_of_birth!=null&&author.date_of_death!=null
+        p (#{author.lifespan} 岁)
+
+    div(style='margin-left:20px;margin-top:20px')
+
+        h4 Books
+
+        dl
+            each book in author_books
+                dt
+                    a(href=book.url) #{book.title}
+                dd #{book.summary}
+
+            else
+                p This author has no books.
+    hr
+    p
+        a(href=author.url+'/delete') Delete author
